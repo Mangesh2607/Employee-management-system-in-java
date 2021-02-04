@@ -1,0 +1,513 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+
+public class FrontEnd {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		NewWindow nobj=new NewWindow();
+		//Frame fobj=new Frame();
+	}
+	public void CallerBack(int eid,String name,String pname,int sal,int age) 
+	{
+		Employee1 eobj=new Employee1();
+		eobj.Insert1(eid, name, pname, sal, age);
+	}
+}
+
+class NewWindow
+{
+	public NewWindow()
+	{
+		JPanel pobj1 =new JPanel();
+		pobj1.setLayout(new FlowLayout());
+		
+		JFrame Login=new JFrame("Login");
+		Login.setSize(500,500);
+		Login.setBackground(Color.BLUE);
+		
+		JLabel lobj1=new JLabel("User Name ");
+		lobj1.setBounds(100,70,100,50);
+		
+		JTextField tobj1 = new JTextField(10);
+		tobj1.setBounds(200, 80, 130, 30);
+		
+		JLabel lobj2 = new JLabel("Password");
+		lobj2.setBounds(100, 135, 100, 50);
+		
+		final JPasswordField tobj2 = new JPasswordField(20);
+		tobj2.setBounds(200, 150, 130, 30);
+		
+		JButton bobj1 = new JButton("Login user");
+		bobj1.setBounds(200, 300, 100, 40);
+		
+		JLabel lobj3=new JLabel();
+		//lobj3.setAlignmentX(lobj3.CENTER);
+		lobj3.setBounds(130,280,120,30);
+		lobj3.setForeground(Color.red);
+		
+		
+       
+        //lobj2.setLabelFor(pfPassword);
+        
+        JButton btnGet = new JButton("Display Password");
+        btnGet.setBounds(190,190,150,20);
+        
+		Login.setLayout(null);
+		
+		Login.add(tobj1);
+		Login.add(lobj1);
+		Login.add(tobj2);
+		Login.add(lobj2);
+		Login.add(bobj1);
+		Login.add(pobj1);
+		Login.add(lobj3);
+		Login.add(btnGet);
+		//Login.add(pfPassword);
+		Login.setVisible(true);
+		Login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		btnGet.addActionListener(
+                new ActionListener() {
+ 
+                    public void actionPerformed(ActionEvent e) {
+                        String password = new String(tobj2.getPassword());
+                        JOptionPane.showMessageDialog(Login,
+                                "Password is " + tobj2.getText());
+                    }
+                });
+		
+		bobj1.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent eobj)
+			{
+				System.out.println("user name: "+tobj1.getText());
+				System.out.println("Password: "+tobj2.getText());
+				String str=tobj1.getText();
+				String str2=tobj2.getText();
+				if(str.equals("Mangesh26"))
+				{
+					if(str2.equals("M@ngesh26"))
+					{
+						Home hobj=new Home();
+					}
+					else
+					{
+						lobj3.setText("Invalid Password");
+						System.out.println("Invalid Password");
+					}
+					
+				}
+				else if(str2.equals("M@ngesh26"))
+				{
+					if(str.equals("Mangesh26"))
+					{
+						Home hobj = new Home();
+					}
+					else
+					{
+						lobj3.setText("Invalid Username");
+						System.out.println("Invalid Username");
+					}
+					
+				}
+				else if(str.equals(""))
+				{
+					lobj3.setText("Enter Username");
+				}
+				else if(str2.equals(""))
+				{
+					lobj3.setText("Enter Password");
+				}
+				else
+				{
+					lobj3.setText("Invalid Username and Password!");
+					System.out.println("Invalid Username and password!");
+					
+				}
+				
+			}
+				});
+		
+		}
+		
+}
+
+class Home
+{
+	public Home()
+	{
+		JFrame fobj=new JFrame("Home");
+		fobj.setSize(500,500);
+		
+		JButton bobj1 = new JButton("Add ");
+		
+		bobj1.setBounds(120, 150, 100, 40);
+		
+		JButton bobj2 = new JButton("Display ");
+		bobj2.setBounds(120, 200, 100, 40);
+		
+		JButton bobj3 = new JButton("Delete ");
+		bobj3.setBounds(250, 150, 100, 40);
+		
+		JButton bobj4 = new JButton("Count ");
+		bobj4.setBounds(250, 200, 100, 40);
+		
+		JButton bobj5=new JButton("<--Back");
+	    bobj5.setBounds(100,350,100,30);
+	     
+	    JLabel lobj1=new JLabel();
+	    lobj1.setBounds(300, 310, 200, 30);
+		
+	    JButton YesB = new JButton("Yes");
+		YesB.setBounds(120,400,70,40);
+		
+		JButton NoB = new JButton("No");
+		NoB.setBounds(120,400,70,40);
+	    
+		fobj.add(bobj1);
+		fobj.add(bobj2);
+		fobj.add(bobj3);
+		fobj.add(bobj4);
+		fobj.add(bobj5);
+		fobj.add(lobj1);
+		
+		
+		fobj.setLayout(null);
+		
+		fobj.setVisible(true);
+		fobj.setDefaultCloseOperation(fobj.DISPOSE_ON_CLOSE);
+		
+		bobj1.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent aobj)
+			{
+				Frame fobj=new Frame();
+				
+			}
+				});
+		bobj2.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent dobj)
+			{
+				Employee1 eobj=new Employee1();
+				eobj.Display();
+			}
+				});
+		bobj5.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent aobj)
+			{
+				int a=JOptionPane.showConfirmDialog(fobj,"Are you sure?");  
+				if(a==JOptionPane.YES_OPTION){  
+				    NewWindow nobj=new NewWindow();  
+				}  
+				
+			}
+				});
+				
+	}
+}
+
+class Display extends Frame
+{
+	public Display()
+	{
+		JFrame fobj=new JFrame("Display Records");
+		
+		
+		
+		JTextField tobj1 = new JTextField("");
+		tobj1.setBounds(100,50,70,30);
+		
+		JLabel lobj1 = new JLabel("Enter ID ");
+		lobj1.setBounds(20, 10, 100, 100);
+//      ---------------------------------------------
+		JTextField tobj2 = new JTextField();
+		tobj2.setBounds(100, 100,130, 30);
+
+		JLabel lobj2 = new JLabel("Name ");
+		lobj2.setBounds(30,50,100,120);
+//      ---------------------------------------------		
+		JTextField tobj3 = new JTextField();
+		tobj3.setBounds(100, 150, 130, 30);
+		
+		JLabel lobj3 = new JLabel("Project Name ");
+		lobj3.setBounds(10,110,100,100);
+//      ---------------------------------------------				
+		JTextField tobj4 = new JTextField();
+		tobj4.setBounds(100, 200, 130, 30);
+		
+		JLabel lobj4 = new JLabel("Salary ");
+		lobj4.setBounds(35, 160, 100, 100);
+//      ---------------------------------------------
+		JTextField tobj5 = new JTextField();
+		tobj5.setBounds(100, 240, 130, 30);
+		
+		JLabel lobj5 = new JLabel("Age ");
+		lobj5.setBounds(40, 200, 130, 100);
+		
+		fobj.add(tobj1);
+		fobj.add(lobj1);
+		fobj.add(tobj2);
+		fobj.add(lobj2);
+		fobj.add(tobj3);
+		fobj.add(lobj3);
+		fobj.add(tobj4);
+		fobj.add(lobj4);
+		fobj.add(tobj5);
+		fobj.add(lobj5);
+		
+		
+		
+		fobj.setSize(500,500);
+		fobj.setLayout(null);
+		
+		fobj.setVisible(true);
+		fobj.setDefaultCloseOperation(fobj.DISPOSE_ON_CLOSE);		
+	}
+}
+
+class Frame
+{
+	public Frame()
+	{
+		JFrame fobj=new JFrame("Employee Management System");
+		
+		
+		
+		JTextField tobj1 = new JTextField();
+		tobj1.setBounds(100,50,70,30);
+		
+		JLabel lobj1 = new JLabel("Enter ID ");
+		lobj1.setBounds(20, 10, 100, 100);
+//      ---------------------------------------------
+		JTextField tobj2 = new JTextField();
+		tobj2.setBounds(100, 100,130, 30);
+
+		JLabel lobj2 = new JLabel("Name ");
+		lobj2.setBounds(30,50,100,120);
+//      ---------------------------------------------		
+		JTextField tobj3 = new JTextField();
+		tobj3.setBounds(100, 150, 130, 30);
+		
+		JLabel lobj3 = new JLabel("Project Name ");
+		lobj3.setBounds(10,110,100,100);
+//      ---------------------------------------------				
+		JTextField tobj4 = new JTextField();
+		tobj4.setBounds(100, 200, 130, 30);
+		
+		JLabel lobj4 = new JLabel("Salary ");
+		lobj4.setBounds(35, 160, 100, 100);
+//      ---------------------------------------------
+		JTextField tobj5 = new JTextField();
+		tobj5.setBounds(100, 240, 130, 30);
+		
+		JLabel lobj5 = new JLabel("Age ");
+		lobj5.setBounds(40, 200, 130, 100);
+//      ---------------------------------------------
+		JButton bobj1 = new JButton("Submit");
+		bobj1.setBounds(100, 300, 100, 40);
+		
+//      ---------------------------------------------
+		
+		
+				
+		bobj1.setActionCommand("Submit");
+		
+		
+		
+		fobj.add(tobj1);
+		fobj.add(lobj1);
+		fobj.add(tobj2);
+		fobj.add(lobj2);
+		fobj.add(tobj3);
+		fobj.add(lobj3);
+		fobj.add(tobj4);
+		fobj.add(lobj4);
+		fobj.add(tobj5);
+		fobj.add(lobj5);
+		fobj.add(bobj1);
+		
+		
+		fobj.setSize(500,500);
+		fobj.setLayout(null);
+		
+		fobj.setVisible(true);
+		fobj.setDefaultCloseOperation(fobj.DISPOSE_ON_CLOSE);
+		
+		bobj1.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent a)
+			{
+				String str;
+				str=bobj1.getText();
+				
+				System.out.println("___________________________________\n");
+				System.out.println("Employee information is: \n");
+				System.out.println("___________________________________\n");
+				System.out.println("Id is: "+tobj1.getText());
+				System.out.println("Name is: "+tobj2.getText());
+				System.out.println("Project name is: "+tobj3.getText());
+				System.out.println("Salary is: "+tobj4.getText());
+				System.out.println("Age is: "+tobj5.getText());
+				System.out.println("");
+				
+//Employee1 eobj=new Employee1();
+//eobj.Insert(Integer.parseInt(tobj1.getText()),tobj2.getText(),tobj3.getText(),Integer.parseInt(tobj4.getText()),Integer.parseInt(tobj5.getText()));
+				FrontEnd fEnd=new FrontEnd();
+fEnd.CallerBack(Integer.parseInt(tobj1.getText()),tobj2.getText(),tobj3.getText(),Integer.parseInt(tobj4.getText()),Integer.parseInt(tobj5.getText()));
+				if(str.equals("Submit"))
+				{
+					int b=JOptionPane.showConfirmDialog(fobj, "Add more?");
+					if(b==JOptionPane.YES_OPTION)
+					{
+						
+						fobj.setVisible(false);
+						Frame fobj2=new Frame();
+					}
+					if(b==JOptionPane.NO_OPTION)
+					{
+						fobj.setVisible(false);
+					}
+				}
+			
+			}
+				});
+	}
+	
+}
+
+
+class Employee1 
+{
+	class node{
+		int Eid;
+		String name;
+		String PName;
+		int sal;               //use both  ways, we can define class above also or inside.
+		int age;		
+		node next;
+		
+		public node()
+		{
+			this.next=null;
+								
+		}
+	}
+	
+	
+	int size=0;
+	node head=null;
+	
+	
+	public void Insert1(int eid,String name,String pname,int sal,int age)
+	{
+		//int newS=0;
+		node newn=new node();
+		
+		//newS=aobj.Bonus(sal, yrs);
+		
+		newn.Eid=eid;
+		newn.name=name;
+		newn.PName=pname;
+		//newn.sal=newS;
+		newn.age=age;
+		newn.next=null;
+		boolean bret=false;
+		node temp=head;
+		System.out.println(newn.Eid);
+		
+		if(head==null)
+		{
+			
+			head=newn;
+			System.out.println(head.Eid);
+			System.out.println(head.name);
+			
+			
+		}
+		
+		else if(head.next==null)
+		{
+			//bret=ChkIDDuplicate(eid);
+			if(bret==true)
+			{
+				return;
+			}
+			
+			head.next=newn;
+		}
+		
+		else
+		{
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			//bret=ChkIDDuplicate(eid);
+			if(bret==true)
+			{
+				return;
+			}
+			temp.next=newn;
+						
+		}
+		size++;
+	}
+	/*public boolean ChkIDDuplicate(int id)
+	{
+		node temp=head;
+		
+		while(temp!=null)
+			{
+				if(temp.Eid==id)
+				{
+					System.out.println("Duplicate ID "+temp.Eid+ " found, you can't add this.");
+					return true;
+				}
+				temp=temp.next;
+			}
+		
+		return false;
+	}
+	*/
+	public void Display()
+	{
+		node temp=head;
+		
+		if(head==null)
+		{
+			System.out.println("No Record found!, enter the records first.");
+			
+			return;
+		}
+		else
+		{
+			while(temp!=null)
+			{
+				System.out.println("___________________________________\n");
+				System.out.println("Employee information is: \n");
+				System.out.println("___________________________________\n");
+				System.out.println("Id is: "+temp.Eid);
+				System.out.println("Name is: "+temp.name);
+				System.out.println("Project name is: "+temp.PName);
+				System.out.println("Salary is: "+temp.sal);
+				System.out.println("Age is: "+temp.age);
+				System.out.println("");
+				temp=temp.next;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
